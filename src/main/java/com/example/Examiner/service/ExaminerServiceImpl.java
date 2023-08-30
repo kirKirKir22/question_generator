@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Random;
+import java.util.Set;
+
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-
-    Random random;
-    QuestionService questionService;
+    private final QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService) {
         this.questionService = questionService;
@@ -19,19 +18,16 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        int limit = 15;
+        Set<Question> questions = new HashSet<>();
 
-        if (amount > limit) {
-            throw new TooManyQuestionsException("Requested more questions than available.");
-        }
-        Collection<Question> questions = new HashSet<>();
-
-
-        for (int i = 0; i < amount; i++) {
-            Question randomQuestion = questionService.getRandomQuestion();
-            questions.add(randomQuestion);
+        if (questionService.getAll().stream().distinct().count() > amount) {
+            throw new TooManyQuestionsException
+                    ("Запрошенное количество вопросов превышает количество доступных вопросов.");
         }
 
+        while (questions.size() > amount) {
+            questions.add(questionService.getRandomQuestion());
+        }
         return questions;
     }
 }

@@ -4,15 +4,20 @@ import com.example.Examiner.dto.Question;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.Random;
 
 @Service
 public class JavaQuestionService implements QuestionService {
 
-    private Set<Question> questions;
+    private final Set<Question> questions;
+
+    private Random random = new Random();
 
     public JavaQuestionService(Set<Question> questions) {
         this.questions = questions;
+
     }
+
 
     @Override
     public Question add(String question, String answer) {
@@ -40,12 +45,9 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        Random random = new Random();
-        int randomIndex = random.nextInt(questions.size());
-        Iterator<Question> iterator = questions.iterator();
-        for (int i = 0; i < randomIndex; i++) {
-            iterator.next();
+        if (questions.isEmpty()) {
+            throw new RuntimeException("список вопросов пуст");
         }
-        return iterator.next();
+        return questions.stream().toArray(Question[]::new)[random.nextInt(questions.size())];
     }
 }
