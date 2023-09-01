@@ -5,6 +5,7 @@ import com.example.Examiner.service.interf.QuestionService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -14,13 +15,15 @@ public class JavaQuestionService implements QuestionService {
     private final Set<Question> questions;
     private final Random random = new Random();
 
-    public JavaQuestionService(Set<Question> questions) {
-        this.questions = questions;
+
+
+    public JavaQuestionService() {
+        this.questions = new HashSet<>();
     }
 
 
     @Override
-    public Question add(String question, String answer) {
+    public Question add(String question, String answer) {// не понимаю
         Question question1 = new Question(question, answer);
         questions.add(question1);
         return question1;

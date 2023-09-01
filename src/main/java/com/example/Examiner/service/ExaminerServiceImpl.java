@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService) {
         this.questionService = questionService;
@@ -21,7 +21,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) {
         Set<Question> questions = new HashSet<>();
-        if (questionService.getAll().stream().count() < amount) {
+        if (questionService.getAll().size() < amount) {
             throw new TooManyQuestionsException("Запрошенное количество вопросов превышает количество доступных вопросов.");
         }
         while (questions.size() > amount) {

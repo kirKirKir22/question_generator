@@ -2,6 +2,7 @@ package com.example.Examiner.controller;
 
 import com.example.Examiner.service.JavaQuestionService;
 import com.example.Examiner.dto.Question;
+import com.example.Examiner.service.interf.QuestionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +14,9 @@ import java.util.Collection;
 @RequestMapping("/java")
 public class JavaQuestionController {
 
-    private final JavaQuestionService service;
+    private final QuestionService service;
 
-    public JavaQuestionController(JavaQuestionService service) {
+    public JavaQuestionController(QuestionService service) {
         this.service = service;
     }
 
