@@ -1,4 +1,4 @@
-package com.example.Examiner.service;
+package com.example.Examiner.service.interf;
 
 import com.example.Examiner.dto.Question;
 

@@ -3,6 +3,7 @@ package com.example.Examiner.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.Examiner.dto.Question;
+import com.example.Examiner.service.interf.QuestionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,9 @@ class JavaQuestionServiceTest {
     private Set<Question> questions;
     Question questionTest1 = new Question("вопрос1", "ответ1");
     Question questionTest2 = new Question("вопрос2", "ответ2");
+    Question questionTest3 = new Question("вопрос3", "ответ3");
+
+
 
     @BeforeEach
     void setUp() {
@@ -28,7 +32,7 @@ class JavaQuestionServiceTest {
 
         Question result = underTest.add(questionTest1.getQuestion(), questionTest1.getAnswer());
         assertTrue(questions.contains(result));
-        assertEquals(result, questionTest1);
+        assertEquals(result, underTest.add(questionTest1));
     }
 
     @Test
@@ -65,5 +69,14 @@ class JavaQuestionServiceTest {
 
     @Test
     void getRandomQuestion() {
+
+        questions.add(questionTest1);
+        questions.add(questionTest2);
+        questions.add(questionTest3);
+
+        Question result = underTest.getRandomQuestion();
+        assertTrue(result,questions.containsAll());
+
     }
+
 }

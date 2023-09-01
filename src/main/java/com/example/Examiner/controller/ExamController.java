@@ -1,6 +1,6 @@
 package com.example.Examiner.controller;
 
-import com.example.Examiner.service.ExaminerService;
+import com.example.Examiner.service.interf.ExaminerService;
 import com.example.Examiner.dto.Question;
 import org.springframework.web.bind.annotation.*;
 

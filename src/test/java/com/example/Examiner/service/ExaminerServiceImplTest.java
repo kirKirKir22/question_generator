@@ -1,8 +1,9 @@
 package com.example.Examiner.service;
 
 import com.example.Examiner.dto.Question;
-import com.example.Examiner.exception.TooManyQuestionsException;
 
+
+import com.example.Examiner.service.interf.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -29,15 +30,11 @@ class ExaminerServiceImplTest {
 
     @Test
     void getQuestions() {
-
-
         int amount = 1;
         when(questionService.getAll()).thenReturn(List.of(question1, question2));
         Collection<Question> result = underTest.getQuestions(amount);
         assertEquals(amount, result.size());
 
-
     }
-
 
 }
