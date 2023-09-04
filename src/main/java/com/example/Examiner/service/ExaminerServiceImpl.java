@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
+
     private final QuestionService questionService;
 
     public ExaminerServiceImpl(QuestionService questionService) {
@@ -20,14 +21,15 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
+
         Set<Question> questions = new HashSet<>();
+
         if (questionService.getAll().size() < amount) {
             throw new TooManyQuestionsException("Запрошенное количество вопросов превышает количество доступных вопросов.");
         }
         while (questions.size() < amount) {
             questions.add(questionService.getRandomQuestion());
         }
-
 
         return questions;
     }

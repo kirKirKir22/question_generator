@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class JavaQuestionServiceTest {
 
     private JavaQuestionService underTest;
+
     private Set<Question> questions;
+
     Question questionTest1 = new Question("вопрос1", "ответ1");
     Question questionTest2 = new Question("вопрос2", "ответ2");
     Question questionTest3 = new Question("вопрос3", "ответ3");
@@ -32,9 +34,22 @@ class JavaQuestionServiceTest {
     void add_questionsFieldsAddedAndReturned() {
 
         Question result = underTest.add(questionTest1.getQuestion(), questionTest1.getAnswer());
-        assertTrue(questions.contains(result));
+        assertTrue(underTest.getAll().contains(result));
         assertEquals(result, questionTest1);
     }
+/*
+
+    @Test
+    public void shouldAddQuestion() {
+        int beforeCount = questionService.getAll().size();
+
+        assertThat(questionService.add(QUESTION_4))
+                .isEqualTo(QUESTION_4)
+                .isIn(questionService.getAll());
+
+        assertThat(questionService.getAll()).hasSize(beforeCount + 1);
+    }
+*/
 
     @Test
     void add_questionAddedAndReturned() {
@@ -52,6 +67,17 @@ class JavaQuestionServiceTest {
 
 
     }
+/*
+    @Test
+    public void shouldRemoveQuestion() {
+        int beforeCount = questionService.getAll().size();
+
+        assertThat(questionService.remove(QUESTION_1))
+                .isEqualTo(QUESTION_1)
+                .isNotIn(questionService.getAll());
+
+        assertThat(questionService.getAll()).hasSize(beforeCount - 1);
+    }*/
 
     @Test
     void getAll_setWithQuestions_setWithoutQuestions() {

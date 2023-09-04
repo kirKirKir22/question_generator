@@ -16,7 +16,6 @@ public class JavaQuestionService implements QuestionService {
     private final Random random = new Random();
 
 
-
     public JavaQuestionService() {
         this.questions = new HashSet<>();
     }

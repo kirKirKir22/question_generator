@@ -12,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -33,11 +35,10 @@ class ExaminerServiceImplTest {
                 new Question("вопрос1", "ответ1"),
                 new Question("вопрос2", "ответ2"),
                 new Question("вопрос3", "ответ3"),
-                new Question("вопрос4", "ответ3"),
-                new Question("вопрос5", "ответ4")
+                new Question("вопрос4", "ответ5"),
+                new Question("вопрос5", "ответ5")
         );
     }
-
 
     @Test
     void qetQuestions_amountMoreSize_thrownTooManyRequestException() {
@@ -60,7 +61,8 @@ class ExaminerServiceImplTest {
                 .thenReturn(new Question("вопрос4", "ответ4"))
                 .thenReturn(new Question("вопрос5", "ответ5"));
 
-              Collection<Question> result = underTest.getQuestions(3);
+        Collection<Question> result = underTest.getQuestions(3);
+        assertEquals(result.size(),3);
 
 
     }
