@@ -24,7 +24,7 @@ public class ExaminerServiceImpl implements ExaminerService {
         if (questionService.getAll().size() < amount) {
             throw new TooManyQuestionsException("Запрошенное количество вопросов превышает количество доступных вопросов.");
         }
-        while (questions.size() > amount) {
+        while (questions.size() < amount) {
             questions.add(questionService.getRandomQuestion());
         }
 

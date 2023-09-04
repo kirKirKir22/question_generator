@@ -66,7 +66,7 @@ class JavaQuestionServiceTest {
         assertTrue(result.containsAll(questions));
 
         questions.clear();
-        assertTrue(questions.isEmpty());
+        assertTrue(result.isEmpty());
     }
 
     @Test

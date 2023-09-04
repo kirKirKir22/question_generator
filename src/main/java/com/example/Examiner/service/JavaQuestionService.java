@@ -23,10 +23,8 @@ public class JavaQuestionService implements QuestionService {
 
 
     @Override
-    public Question add(String question, String answer) {// не понимаю
-        Question question1 = new Question(question, answer);
-        questions.add(question1);
-        return question1;
+    public Question add(String question, String answer) {
+        return add(new Question(question, answer));
     }
 
     @Override
